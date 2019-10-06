@@ -45,7 +45,7 @@ def accumulateHomographies(Hpair,m):
                 k += 1
             H.append(H_im)
 
-        return Htot
+        return H
 
 
 
