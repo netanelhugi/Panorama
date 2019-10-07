@@ -18,7 +18,7 @@ def accumulateHomographies(Hpair,m):
         H.append(H3)
         return H
         # CASE  i < m
-        for i in range(m):
+        for i in range(m+1):
             H_im = Hpair[m]
             k = m - 1
             while k >= i:
@@ -27,13 +27,11 @@ def accumulateHomographies(Hpair,m):
             # Htemp.append(H_im)
             H.append(H_im)
 
-        # for i in reversed(Htemp): no need to reverse
-        #     Htot.append(i)
         # CASE 2  i = m
-        if i == m:
-            H_im = np.identity(3)
-            H.append(H_im)
-            i += 1
+           if i == m:
+              H_im = np.identity(3)
+              H.append(H_im)
+              i += 1
 
         # CASE 3 i > m
         for i in range(m + 1, len(Hpair) - 1):
