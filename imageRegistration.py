@@ -243,8 +243,8 @@ def displayMatchs(im1,im2,pos1,pos2,inlind):
 
 
 if __name__ == '__main__':
-    img1 = cv.imread('./data/inp/examples/oxford1.jpg', cv.IMREAD_GRAYSCALE)
-    img2 = cv.imread('./data/inp/examples/oxford2.jpg', cv.IMREAD_GRAYSCALE)
+    img1 = cv.imread('oxford1.jpg', cv.IMREAD_GRAYSCALE)
+    img2 = cv.imread('oxford2.jpg', cv.IMREAD_GRAYSCALE)
 
     mp = findMatchFeaturs(img1, img2)
     pts1, pts2 = spiltPointsList(mp)
