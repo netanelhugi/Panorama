@@ -59,10 +59,13 @@ def applyHomography(pos1, H):
     pos2 = []  # For the new points positions after homography transformation
 
     # For every point calculate transformation:
-    for p in pos1:
+    for point in pos1:
 
-        p = [p[0],p[1],1]  # Convert to homogeneous coordinate
+        # print(point)
+        p = [point[0],point[1],1]  # Convert to homogeneous coordinate
         newP = H.dot(p)  # Multiply in the transformation matrix
+        # if newP[2] == 0:
+        # print(newP)
         newP = [newP[0]/newP[2],newP[1]/newP[2]]  # Convert from homogeneous coordinate
 
         pos2.append(newP)
@@ -209,7 +212,7 @@ function name:displayMatches
 '''
 def displayMatchs(im1,im2,pos1,pos2,inlind):
 
-    h,w = img1.shape
+    h,w = im1.shape
 
     # Remove duplicates between all points to inliers points:
     pos1and2 = zip(pos1,pos2)
@@ -242,12 +245,12 @@ def displayMatchs(im1,im2,pos1,pos2,inlind):
     plt.show()
 
 
-if __name__ == '__main__':
-    img1 = cv.imread('oxford1.jpg', cv.IMREAD_GRAYSCALE)
-    img2 = cv.imread('oxford2.jpg', cv.IMREAD_GRAYSCALE)
-
-    mp = findMatchFeaturs(img1, img2)
-    pts1, pts2 = spiltPointsList(mp)
-    h, pts = ransacHomography(pts1, pts2, numIters=1000, inlierTol=10)
-    displayMatchs(img1, img2, pts1, pts2, pts)
+# if __name__ == '__main__':
+#     img1 = cv.imread('./data/inp/examples/oxford1.jpg', cv.IMREAD_GRAYSCALE)
+#     img2 = cv.imread('./data/inp/examples/oxford2.jpg', cv.IMREAD_GRAYSCALE)
+#
+#     mp = findMatchFeaturs(img1, img2)
+#     pts1, pts2 = spiltPointsList(mp)
+#     h, pts = ransacHomography(pts1, pts2, numIters=1000, inlierTol=10)
+#     displayMatchs(img1, img2, pts1, pts2, pts)
 
